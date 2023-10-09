@@ -5,4 +5,4 @@ FROM wordpress:latest
 COPY . /var/www/html
 
 # Copy your WordPress config file into the container
-COPY wp-config-sample.php /var/www/html/wp-config-sample.php
+COPY wp-config.php /var/www/html/wp-config.php

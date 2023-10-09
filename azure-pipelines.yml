@@ -1,16 +1,16 @@
+variables:
+  dockerRegistryServiceConnection: 'Azure WordPress'
+  imageName: 'shivisharma02/shivi-blog:latest'
+
 trigger:
   - main  # or your preferred branch
 
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-dockerRegistryServiceConnection: 'Azure WordPress'
-imageName: 'shivisharma02/shivi-blog:latest'
-
 steps:
-- script: docker build -t Word Press/wordpress-app:$(Build.BuildId) .
+- script: docker build -t $(imageName) .
   displayName: 'Docker Build'
-
-- script: docker push Word Press/wordpress-app:$(Build.BuildId)
+ 
+- script: docker push $(imageName)
   displayName: 'Docker Push'

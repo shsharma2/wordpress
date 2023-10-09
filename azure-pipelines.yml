@@ -9,8 +9,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: docker build -t $(imageName) .
-  displayName: 'Docker Build'
- 
-- script: docker push $(imageName)
-  displayName: 'Docker Push'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'Azure WordPress'
+    repository: 'shivi-blog'
+    command: 'buildAndPush'
+    Dockerfile: 'Dockerfile'

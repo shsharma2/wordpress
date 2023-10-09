@@ -12,6 +12,11 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'Azure WordPress'
+    command: 'login'
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'Azure WordPress'
     repository: 'shivi-blog'
     command: 'buildAndPush'
     Dockerfile: 'Dockerfile'

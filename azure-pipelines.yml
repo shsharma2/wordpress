@@ -4,6 +4,10 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+dockerRegistryServiceConnection: 'Azure WordPress'
+imageName: 'shivisharma02/shivi-blog:latest'
+
 steps:
 - script: docker build -t Word Press/wordpress-app:$(Build.BuildId) .
   displayName: 'Docker Build'

@@ -3,20 +3,27 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-  - main  # or your preferred branch
+- main
 
-pool:
-  vmImage: 'ubuntu-latest'
+resources:
+- repo: Word Press
 
-steps:
-- task: Docker@2
-  inputs:
-    containerRegistry: 'Azure WordPress'
-    command: 'login'
+variables:
+  tag: '$(Build.BuildId)'
 
-- task: Docker@2
-  inputs:
-    containerRegistry: 'Azure WordPress'
-    repository: 'Word Press'  # Replace with the correct repository name.
-    command: 'buildAndPush'
-    Dockerfile: 'Dockerfile'
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        command: build
+        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        tags: |
+          $(tag)

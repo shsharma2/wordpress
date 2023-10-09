@@ -17,6 +17,6 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'Azure WordPress'
-    repository: 'shivi-blog'
+    repository: 'Word Press'
     command: 'buildAndPush'
     Dockerfile: 'Dockerfile'

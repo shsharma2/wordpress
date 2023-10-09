@@ -19,18 +19,24 @@ stages:
 - stage: Build
   displayName: Build image
   jobs:
-  - job: Build
-    displayName: Build
+  - job: BuildAndPushDockerImage
+    displayName: 'Build and Push Docker Image'
     pool:
-      vmImage: ubuntu-latest
+      vmImage: 'ubuntu-latest'
     steps:
     - task: Docker@2
+      displayName: 'Build Docker Image'
       inputs:
-        containerRegistry: 'Azure WordPress'
-        command: 'login'
+        containerRegistry: 'Azure WordPress' # Define this as a service connection in Azure DevOps
+        repository: 'Word Press'
+        command: 'buildAndPush'
+        Dockerfile: 'Dockerfile' # Specify the path to your Dockerfile
+        tags: 'latest, $(Build.BuildId)' # You can customize the image tags here
+
     - task: Docker@2
       inputs:
         containerRegistry: 'Azure WordPress'
         repository: 'Word Press'
         command: 'buildAndPush'
         Dockerfile: 'Dockerfile'
+        

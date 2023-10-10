@@ -6,13 +6,13 @@ pool:
 
 variables:
   dockerRegistryServiceConnection: 'Azure WordPress'
-  imageName: 'shivisharma02/shivi-wp'
+  imageName: 'shivisharma02/shivi-blog-wordpress'
 
 steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'Azure WordPress'
-    repository: 'shivisharma02/shivi-wp'
+    repository: 'shivisharma02/shivi-blog-wordpress'
     command: 'buildAndPush'
     Dockerfile: 'Dockerfile'
 
@@ -20,6 +20,6 @@ steps:
   inputs:
     sshEndpoint: 'Kestone_connection'
     runOptions: 'commands'
-    commands: 'docker pull shivisharma02/shivi-wp;scp docker/shivisharma02/shivi-wp shivi@182.73.29.36'
+    commands: 'docker pull shivisharma02/shivi-blog-wordpress;scp docker/shivisharma02/shivi-blog-wordpress shivi@182.73.29.36'
     interactiveSession: true
     readyTimeout: '20000'

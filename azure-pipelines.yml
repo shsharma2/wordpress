@@ -20,6 +20,6 @@ steps:
   inputs:
     sshEndpoint: 'Kestone_connection'
     runOptions: 'commands'
-    commands: 'docker pull shivisharma02/shivi-blog-wordpress;scp docker/shivisharma02/shivi-blog-wordpress shivi@182.73.29.36'
+    commands: 'docker pull shivisharma02/shivi-blog-wordpress;scp shivisharma02/shivi-blog-wordpress shivi@182.73.29.36'
     interactiveSession: true
     readyTimeout: '20000'

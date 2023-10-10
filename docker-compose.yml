@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3"
 services:
   # Database
   db:
@@ -30,7 +30,7 @@ services:
   wordpress:
     depends_on:
       - db
-    build: .
+    image: shivisharma02/shivi-blog-wordpress
     volumes:
       - wordpress_data_volume:/var/www/html
     ports:

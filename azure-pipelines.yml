@@ -20,6 +20,6 @@ steps:
   inputs:
     sshEndpoint: 'Kestone_connection'
     runOptions: 'commands'
-    commands: 'scp -P 22 docker-compose.yml shivi@182.73.29.36:/home/shivi/wordpress;cd /home/shivi/wordpress && docker-compose pull && docker-compose down && docker-compose up -d'
+    commands: 'scp -P 22 $(System.DefaultWorkingDirectory)/docker-compose.yml shivi@182.73.29.36:/home/shivi/wordpress;cd /home/shivi/wordpress && docker-compose pull && docker-compose down && docker-compose up -d'
     interactiveSession: true
     readyTimeout: '20000'

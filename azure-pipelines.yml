@@ -25,5 +25,5 @@ stages:
       inputs:
         command: 'buildAndPush'
         containerRegistry: Azure WordPress
-        repository: shivi-wp
+        repository: shivisharma02/shivi-wp
         

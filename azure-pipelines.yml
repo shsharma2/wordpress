@@ -9,6 +9,14 @@ variables:
   imageName: 'shivisharma02/shivi-blog-wordpress'
 
 steps:
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'Kestone_connection'
+    runOptions: 'commands'
+    commands: 'scp -P 22 docker-compose.yml shivi@182.73.29.36:/home/shivi/wordpress'
+    interactiveSession: true
+    readyTimeout: '20000'
+
 - task: Docker@2
   inputs:
     containerRegistry: 'Azure WordPress'
@@ -20,6 +28,6 @@ steps:
   inputs:
     sshEndpoint: 'Kestone_connection'
     runOptions: 'commands'
-    commands: 'scp -P 22 C:\xampp\htdocs\shivi-blog/docker-compose.yml shivi@182.73.29.36:/home/shivi/wordpress;cd /home/shivi/wordpress && docker-compose pull && docker-compose down && docker-compose up -d'
+    commands: 'cd /home/shivi/wordpress && docker-compose pull && docker-compose down && docker-compose up -d'
     interactiveSession: true
     readyTimeout: '20000'

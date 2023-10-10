@@ -28,7 +28,7 @@ stages:
       displayName: 'Build Docker Image'
       inputs:
         containerRegistry: 'Azure WordPress' # Define this as a service connection in Azure DevOps
-        repository: 'Word Press'
+        repository: 'wordpress'
         command: 'buildAndPush'
         Dockerfile: 'Dockerfile' # Specify the path to your Dockerfile
         tags: 'latest, $(Build.BuildId)' # You can customize the image tags here
@@ -36,7 +36,7 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'Azure WordPress'
-        repository: 'Word Press'
+        repository: 'wordpress'
         command: 'buildAndPush'
         Dockerfile: 'Dockerfile'
         

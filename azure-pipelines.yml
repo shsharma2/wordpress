@@ -10,33 +10,20 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
-  dockerRegistryServiceConnection: 'Azure WordPress'
-  imageName: 'shivisharma02/shivi-wp:latest'
-  dockerRegistryCredentials: '$(DOCKER_REGISTRY_CREDENTIALS)'
-
 
 stages:
 - stage: Build
   displayName: Build image
   jobs:
-  - job: BuildAndPushDockerImage
-    displayName: 'Build and Push Docker Image'
+  - job: Build
+    displayName: Build 
     pool:
       vmImage: 'ubuntu-latest'
     steps:
     - task: Docker@2
-      displayName: 'Build Docker Image'
+      displayName: 'Build and Push'
       inputs:
-        containerRegistry: 'Azure WordPress' # Define this as a service connection in Azure DevOps
-        repository: 'wordpress'
         command: 'buildAndPush'
-        Dockerfile: 'Dockerfile' # Specify the path to your Dockerfile
-        tags: 'latest, $(Build.BuildId)' # You can customize the image tags here
-
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'Azure WordPress'
-        repository: 'wordpress'
-        command: 'buildAndPush'
-        Dockerfile: 'Dockerfile'
+        containerRegistry: Azure WordPress
+        repository: shivi-wp
         

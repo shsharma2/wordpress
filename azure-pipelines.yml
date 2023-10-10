@@ -9,12 +9,11 @@ variables:
   imageName: 'shivisharma02/shivi-blog-wordpress'
 
 steps:
-- task: SSH@0
+- task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: 'Kestone_connection'
-    runOptions: 'commands'
-    commands: 'scp -P 22 docker-compose.yml shivi@182.73.29.36:/home/shivi/wordpress'
-    interactiveSession: true
+    contents: 'docker-compose.yml'
+    targetFolder: '/home/shivi/wordpress'
     readyTimeout: '20000'
 
 - task: Docker@2
